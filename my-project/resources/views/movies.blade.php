@@ -9,28 +9,51 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <style>
+        #main {
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            padding-bottom: 25px;
+        }
+
+        .form-group {
+            padding-left: 40%;
+            padding-right: 40%;
+        }
+
+        .list-group {
+            padding-left: 35%;
+            padding-right: 35%;
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>My Favorite Movies</h1>
+    <div id="main">
+        <h1>My Favorite Movies</h1>
 
-    <form action="movies" method="POST" class="pb-5">
-        <div class="input-group">
-            <input type="text" name="title">
-        </div>
+        <form action="movies" method="POST" class="pb-5">
+            <div class="form-group">
+                <input type="text" name="title" class="form-control" placeholder="Enter a movie title!">
+            </div>
 
-        <button type="submit">Add Movie</button>
+            <button type="submit" class="btn btn-primary">Add Movie</button>
 
-        @csrf
-    </form>
+            <div>{{ $errors->first('title') }}</div>
 
-    <ul class="list-group">
-        @foreach ($movies as $movie)
-        <li class="list-group-item">{{ $movie->title }}</li>
-        @endforeach
-    </ul>
+            @csrf
+        </form>
+
+        <ul class="list-group">
+            @foreach ($movies as $movie)
+            <li class="list-group-item">{{ $movie->title }}</li>
+            @endforeach
+        </ul>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

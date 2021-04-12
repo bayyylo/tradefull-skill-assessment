@@ -28,4 +28,32 @@ class MoviesController extends Controller
 
         return back();
     }
+
+    public function show(Movie $movie)
+    {
+        return view('show', compact('movie'));
+    }
+
+    public function edit(Movie $movie)
+    {
+        $movies = Movie::all();
+        return view('edit', compact('movie'));
+    }
+
+    public function update(Movie $movie)
+    {
+        $data = request()->validate([
+            'title' => 'required|min:5'
+        ]);
+
+        $movie->update($data);
+
+        return redirect('/');
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $movie->delete();
+        return redirect('/');
+    }
 }
